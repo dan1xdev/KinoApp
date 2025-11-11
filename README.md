@@ -1,1 +1,2 @@
 # kinoApp
+kinoApp
