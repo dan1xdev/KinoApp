@@ -77,8 +77,8 @@ final class LoyaltyView: UIView{
         NSLayoutConstraint.activate([
             hStack.leadingAnchor.constraint(equalTo: rectangleContainer.leadingAnchor, constant: 16),
             hStack.trailingAnchor.constraint(equalTo: rectangleContainer.trailingAnchor, constant: -16),
-            hStack.bottomAnchor.constraint(equalTo: rectangleContainer.bottomAnchor, constant: -16),
-            hStack.topAnchor.constraint(equalTo: rectangleContainer.topAnchor)
+            hStack.bottomAnchor.constraint(equalTo: rectangleContainer.bottomAnchor, constant: -8),
+            hStack.topAnchor.constraint(equalTo: rectangleContainer.topAnchor, constant: 8)
         ])
         loyaltyQR.widthAnchor.constraint(equalToConstant: 100).isActive = true
         loyaltyQR.heightAnchor.constraint(equalTo: loyaltyQR.widthAnchor).isActive = true

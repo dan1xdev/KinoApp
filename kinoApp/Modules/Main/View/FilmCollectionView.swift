@@ -15,7 +15,7 @@ final class FilmCollectionView: UIView{
     
     
     // MARK: - Views
-    private let collectionView: UICollectionView = {
+    public let collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -28,6 +28,7 @@ final class FilmCollectionView: UIView{
         return collection
     }()
     
+    var onScroll: ((CGFloat) -> Void)?
     
     // MARK: - Init
     override init(frame: CGRect){
@@ -89,3 +90,9 @@ extension FilmCollectionView: UICollectionViewDelegateFlowLayout {
 }
 
 
+
+extension FilmCollectionView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        onScroll?(scrollView.contentOffset.y)
+    }
+}

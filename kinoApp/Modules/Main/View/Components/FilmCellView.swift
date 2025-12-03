@@ -29,7 +29,7 @@ class FilmCellView: UICollectionViewCell {
         label.font = .systemFont(ofSize: 17, weight: .medium)
         label.textColor = UIColor(named: "Imperial red")
         label.numberOfLines = 2
-        label.font = UIFont(name: "Urbanist-Bold", size: 20)
+        label.font = UIFont(name: "Urbanist-Bold", size: 19)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -74,7 +74,22 @@ class FilmCellView: UICollectionViewCell {
     }
     
     func configure(with film: Film) {
-        filmImageView.image = UIImage(named: film.imageName)
-        filmNameLabel.text = film.title
+        filmNameLabel.text = film.nameRu
+        filmImageView.image = nil
+        guard let urlString = film.posterUrlPreview ?? film.posterUrl,
+              let url = URL(string: urlString) else {
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let self = self,
+                  let data = data,
+                  error == nil,
+                  let image = UIImage(data: data) else { return }
+
+            DispatchQueue.main.async {
+                self.filmImageView.image = image
+            }
+        }.resume()
     }
 }

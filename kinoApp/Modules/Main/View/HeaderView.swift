@@ -9,14 +9,16 @@
 import UIKit
 
 final class HeaderView: UIView {
+    var onSearchTap: (() -> Void)?
     private let chooseCinemaButton = ChooseCinemaButtonView()
-    private let findFilmButton: UIButton = {
+    private lazy var findFilmButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         button.tintColor = UIColor(.black)
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor(named: "Imperial red")
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(findFilm), for: .touchUpInside)
         return button
     }()
     
@@ -70,4 +72,8 @@ final class HeaderView: UIView {
                 profileButton.heightAnchor.constraint(equalTo: profileButton.widthAnchor),
             ])
         }
+    
+    @objc func findFilm(){
+        onSearchTap?()
+    }
 }
