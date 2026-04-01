@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>KINOPOISK_API_KEY</key>
-	<string>3037eb60-3ee3-47a0-844a-b32be33073b4</string>
+	<string>YOUR_KINOPOISK_API_KEY</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
