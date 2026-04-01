@@ -39,7 +39,7 @@ class ProfileInfoView: UIView {
         let attributedText = NSMutableAttributedString(
             string: fullText,
             attributes: [
-                .font: UIFont(name: "Urbanist-Medium", size: 20)!,
+                .font: UIFont(name: "Urbanist-Medium", size: 20) ?? UIFont.systemFont(ofSize: 20),
                 .foregroundColor: UIColor.white
             ]
         )
@@ -48,7 +48,7 @@ class ProfileInfoView: UIView {
         if let range = fullText.range(of: "Добро пожаловать!") {
             let nsRange = NSRange(range, in: fullText)
             attributedText.addAttributes([
-                .font: UIFont(name: "Urbanist-ExtraBold", size: 26)!,
+                .font: UIFont(name: "Urbanist-ExtraBold", size: 26) ?? UIFont.boldSystemFont(ofSize: 26),
                 .foregroundColor: UIColor.white
             ], range: nsRange)
         }

@@ -1,8 +1,8 @@
 import UIKit
 
 class MainPageVC: UIViewController {
-    
     // MARK: - Initialize Views
+    private let repository = FilmRepository.shared
     private var loyaltyHeightConstraint: NSLayoutConstraint!
     private var filmCollectionConstraint: NSLayoutConstraint!
     private let headerView = HeaderView()
@@ -11,10 +11,10 @@ class MainPageVC: UIViewController {
     private var isLoyaltyCollapsed = false
     override func viewDidLoad() {
         
+        
+        
         super.viewDidLoad()
-        Task{
-            await self.searchFilm()
-        }
+
         view.backgroundColor = UIColor(named: "Background")
         headerView.translatesAutoresizingMaskIntoConstraints = false
         loyaltyView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,18 +22,18 @@ class MainPageVC: UIViewController {
         view.addSubview(headerView)
         view.addSubview(loyaltyView)
         view.addSubview(filmCollectionView)
-        
+        setupViews()
+        loadFilms()
+    }
+    
+    
+    private func setupViews(){
         filmCollectionView.onScroll = { [weak self] offset in
                 self?.updateLoyaltyHeight(offset: offset)
-            }
-        
+        }
 
-        
-        let sampleFilms: [Film] = []
-        filmCollectionView.configure(with: sampleFilms)
         loyaltyHeightConstraint = loyaltyView.heightAnchor.constraint(equalToConstant: 150)
         filmCollectionConstraint = filmCollectionView.topAnchor.constraint(equalTo: loyaltyView.bottomAnchor)
-
         NSLayoutConstraint.activate([
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -52,7 +52,6 @@ class MainPageVC: UIViewController {
         ])
         
     }
-    
     private func updateLoyaltyHeight(offset: CGFloat) {
         let clampedOffset = max(0, offset)
         let newHeight = max(0, 150 - clampedOffset * 0.5)
@@ -90,43 +89,22 @@ class MainPageVC: UIViewController {
                 self.loyaltyView.isHidden = true
             }
         } else {
-            // пока ещё выше порога — следим, чтобы view была видимой
             loyaltyView.isHidden = false
             loyaltyView.alpha = 1
         }
     }
     
-    private func searchFilm() async {
-        let url = URL(string:
-            "https://kinopoiskapiunofficial.tech/api/v2.2/films/collections"
-        )!
-        
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        components.queryItems = [
-            .init(name: "type", value: "TOP_POPULAR_ALL"),
-            .init(name: "page", value: "1")
-        ]
-        
-        guard let finalURL = components.url else { return }
-
-        var request = URLRequest(url: finalURL)
-        request.setValue("application/json", forHTTPHeaderField: "accept")
-        request.setValue("3037eb60-3ee3-47a0-844a-b32be33073b4",
-                         forHTTPHeaderField: "X-API-KEY")
-
-        do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            
-            let result = try JSONDecoder().decode(KinoResponse.self, from: data)
-            
-            await MainActor.run {
-                filmCollectionView.configure(with: result.items)
+    private func loadFilms() {
+        Task {
+            do {
+                let films = try await repository.getPopularFilms()
+                await MainActor.run {
+                    self.filmCollectionView.configure(with: films)
+                }
+            } catch {
+                print("❌ Failed to load films:", error)
             }
-
-        } catch {
-            print("❌ Error:", error)
-        }
-    }
+        }}
 
 }
 

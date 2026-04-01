@@ -14,8 +14,8 @@ final class SearchView: UIView {
     private lazy var searchTextField: UITextField = {
         var textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "Поиск", attributes: [
-            .foregroundColor: UIColor(named: "Background 3")!,
-            .font: UIFont(name: "Urbanist-Regular", size: 17)!
+            .foregroundColor: UIColor(named: "Background 3") ?? UIColor.gray,
+            .font: UIFont(name: "Urbanist-Regular", size: 17) ?? UIFont.systemFont(ofSize: 17)
         ])
         textField.backgroundColor = .clear
         textField.textColor = .white

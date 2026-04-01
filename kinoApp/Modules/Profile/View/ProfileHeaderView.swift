@@ -1,64 +1,59 @@
 import UIKit
 
-class ProfileHeaderView: UIView {
-    // MARK: - Views
-    private let profileHeaderLabel: UILabel = {
+final class ProfileHeaderView: UIView {
+
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Профиль"
-        label.textColor = UIColor(.white)
+        label.textColor = .white
         label.font = UIFont(name: "Urbanist-Black", size: 27)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private let profileNotificationButton: UIButton = {
+    private let settingsButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: "gear", withConfiguration: UIImage.SymbolConfiguration(pointSize: 15))
+        let image = UIImage(
+            systemName: "gear",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 15)
+        )
         button.setImage(image, for: .normal)
         button.tintColor = .black
-        button.layer.cornerRadius = 10
         button.backgroundColor = UIColor(named: "Imperial red")
+        button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    private lazy var profileHeaderStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [UIView(), profileHeaderLabel, UIView()])
-        stack.alignment = .center
-        stack.distribution = .equalCentering
-        stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    
-    // MARK: - Init
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
     }
-    
-    
-    // MARK: - SetupView
-    private func setupView(){
-        addSubview(profileHeaderStack)
+
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(titleLabel)
+        addSubview(settingsButton)
+
         NSLayoutConstraint.activate([
-            profileHeaderStack.topAnchor.constraint(equalTo: topAnchor),
-            profileHeaderStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            profileHeaderStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            profileHeaderLabel.heightAnchor.constraint(equalToConstant: 50)
-            ])
-        
-        addSubview(profileNotificationButton)
-        NSLayoutConstraint.activate([
-            profileNotificationButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            profileNotificationButton.centerYAnchor.constraint(equalTo: profileHeaderLabel.centerYAnchor),
-            profileNotificationButton.heightAnchor.constraint(equalToConstant: 45),
-            profileNotificationButton.widthAnchor.constraint(equalToConstant: 45)
-            ])
+            // Header height
+            heightAnchor.constraint(equalToConstant: 50),
+
+            // Title centered
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+            // Settings button
+            settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            settingsButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            settingsButton.heightAnchor.constraint(equalToConstant: 45),
+            settingsButton.widthAnchor.constraint(equalToConstant: 45)
+        ])
     }
 }

@@ -1,35 +1,46 @@
-//
-//  TabController.swift
-//  kinoApp
-//
-//  Created by Даниил Кискин on 31.10.2025.
-//
-
 import UIKit
 
-class TabController: UITabBarController {
 
+final class TabController: UITabBarController {
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("TabController willAppear")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTabs()
-        tabBar.backgroundColor = UIColor(named: "Background")
-        tabBar.tintColor = UIColor(named: "Imperial red")
-        tabBar.barTintColor = UIColor(named: "Background 3")
+        setupAppearance()
+        view.backgroundColor = UIColor(named: "Background")
     }
-   
-    // MARK: - Tab Setup
-    private func setupTabs(){
-    
-        let main = self.createTabItem(image: UIImage(named: "Billboard"), vc: MainPageVC())
-        let eat = self.createTabItem(image: UIImage(named: "Food"), vc: EatVC())
-        let profile = self.createTabItem(image: UIImage(named: "Profile"), vc: ProfileVC())
-        
-        self.setViewControllers([main, eat, profile], animated: true)
+    deinit {
+        print("❌ TabController deinit")
     }
-    
-    private func createTabItem(image: UIImage?, vc: UIViewController) -> UINavigationController{
-        let nav = UINavigationController(rootViewController: vc)
-        nav.tabBarItem.image = image
-        return nav
+    func configure(with navs: [UINavigationController]) {
+        setViewControllers(navs, animated: false)
+    }
+
+    private func setupAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .black // или systemBackground
+
+        let itemAppearance = UITabBarItemAppearance()
+
+        itemAppearance.normal.iconColor = .white
+        itemAppearance.selected.iconColor = UIColor(named: "Imperial red")
+
+        itemAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.white
+        ]
+        itemAppearance.selected.titleTextAttributes = [
+            .foregroundColor: UIColor(named: "Imperial red") ?? UIColor.systemRed
+        ]
+
+        appearance.stackedLayoutAppearance = itemAppearance
+        appearance.inlineLayoutAppearance = itemAppearance
+        appearance.compactInlineLayoutAppearance = itemAppearance
+
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
     }
 }

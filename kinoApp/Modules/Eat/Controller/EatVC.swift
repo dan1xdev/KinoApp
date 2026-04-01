@@ -19,10 +19,10 @@ class EatVC: UIViewController{
         view.addSubview(searchView)
         view.addSubview(selectorView)
 //        view.addSubview(eatPositionView)
-        addPosition(title: "Комбо 1", image: UIImage(named: "kombo1")!, price: 549, category: .promotion)
-        addPosition(title: "Яблочный лимонад", image: UIImage(named: "apple_lemon")!, price: 150, category: .drink)
-        addPosition(title: "Попкорн", image: UIImage(named: "popcorn")!, price: 359, category: .food)
-        addPosition(title: "Картофель Фри", image: UIImage(named:"kartofel1")!, price: 99, category: .food)
+        if let img = UIImage(named: "kombo1") { addPosition(title: "Комбо 1", image: img, price: 549, category: .promotion) }
+        if let img = UIImage(named: "apple_lemon") { addPosition(title: "Яблочный лимонад", image: img, price: 150, category: .drink) }
+        if let img = UIImage(named: "popcorn") { addPosition(title: "Попкорн", image: img, price: 359, category: .food) }
+        if let img = UIImage(named: "kartofel1") { addPosition(title: "Картофель Фри", image: img, price: 99, category: .food) }
         view.addSubview(positionListView)
         
         headerView.translatesAutoresizingMaskIntoConstraints = false

@@ -8,6 +8,7 @@
 import UIKit
 
 final class LogoutButtonView: UIView {
+    var onLogoutTap: (() -> Void)?
     // MARK: - Views
     private let container: UIView = {
         let v = UIView()
@@ -65,6 +66,8 @@ final class LogoutButtonView: UIView {
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
+        let tap = UITapGestureRecognizer(target: self, action: #selector(logoutProile))
+        container.addGestureRecognizer(tap)
         
         container.addSubview(HStackView)
         NSLayoutConstraint.activate([
@@ -74,5 +77,9 @@ final class LogoutButtonView: UIView {
             HStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
         ])
         
+    }
+    
+    @objc func logoutProile(){
+        onLogoutTap?()
     }
 }

@@ -1,11 +1,3 @@
-//
-//  FilmCellView.swift
-//  kinoApp
-//
-//  Created by Даниил Кискин on 07.11.2025.
-//
-
-
 import UIKit
 
 class FilmCellView: UICollectionViewCell {

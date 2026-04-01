@@ -1,11 +1,3 @@
-//
-//  HeaderView.swift
-//  kinoApp
-//
-//  Created by Даниил Кискин on 01.11.2025.
-//
-
-
 import UIKit
 
 final class HeaderView: UIView {
