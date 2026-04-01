@@ -12,9 +12,6 @@ final class TabController: UITabBarController {
         setupAppearance()
         view.backgroundColor = UIColor(named: "Background")
     }
-    deinit {
-        print("❌ TabController deinit")
-    }
     func configure(with navs: [UINavigationController]) {
         setViewControllers(navs, animated: false)
     }

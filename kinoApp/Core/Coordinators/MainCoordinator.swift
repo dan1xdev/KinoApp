@@ -3,9 +3,6 @@ import UIKit
 final class MainCoordinator: Coordinator{
     var onLogout: (() -> Void)?
 
-    deinit {
-        print("❌ MainCoordinator deinit")
-    }
     func start() -> UIViewController
     {
         let tabBar = TabController()
