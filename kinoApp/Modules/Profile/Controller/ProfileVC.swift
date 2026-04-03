@@ -12,12 +12,14 @@ final class ProfileVC: UIViewController {
     private let paymentInfoView = PaymentInfoView()
     private let companyInfoView = CompanyInfoView()
     private let logoutButtonView = LogoutButtonView()
+    
 
     // MARK: - Life cycle
     var onLogout: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityIdentifier = "profileScreen"
         view.backgroundColor = UIColor(named: "Background")
         setupViews()
         setupLayout()
@@ -53,6 +55,7 @@ final class ProfileVC: UIViewController {
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        
     }
 
     // MARK: - Setup Layout

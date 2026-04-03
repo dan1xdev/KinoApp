@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "B20EE886-8E17-4F83-A2FC-5F8F4C0CFA46",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:kinoApp.xcodeproj",
+        "identifier" : "92F9903F2F18279F004363CA",
+        "name" : "kinoAppTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:kinoApp.xcodeproj",
+        "identifier" : "92E6DD382F7FCA7500AFC2B4",
+        "name" : "kinoAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

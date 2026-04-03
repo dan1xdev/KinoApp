@@ -14,7 +14,7 @@ class MainPageVC: UIViewController {
         
         
         super.viewDidLoad()
-
+        view.accessibilityIdentifier = "mainScreen"
         view.backgroundColor = UIColor(named: "Background")
         headerView.translatesAutoresizingMaskIntoConstraints = false
         loyaltyView.translatesAutoresizingMaskIntoConstraints = false

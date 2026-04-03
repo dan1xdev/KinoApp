@@ -6,4 +6,9 @@ target 'kinoApp' do
   target 'kinoAppTests' do
     inherit! :search_paths
   end
+
+  target 'kinoAppUITests' do
+    inherit! :search_paths
+    pod 'RealmSwift'
+  end
 end

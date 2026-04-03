@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "23579E04CAF417DDC7382328CF685658"
-               BuildableName = "Pods_kinoApp.framework"
-               BlueprintName = "Pods-kinoApp"
+               BlueprintIdentifier = "23A71E4FE2E05C7B0A4862E0DD0AD81B"
+               BuildableName = "Pods_kinoAppUITests.framework"
+               BlueprintName = "Pods-kinoAppUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

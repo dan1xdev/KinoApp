@@ -66,6 +66,12 @@ final class LogoutButtonView: UIView {
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
+        
+        container.isAccessibilityElement = true
+        container.accessibilityIdentifier = "profileLogout"
+        container.accessibilityTraits = .button
+        
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(logoutProile))
         container.addGestureRecognizer(tap)
         

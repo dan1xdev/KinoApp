@@ -40,6 +40,7 @@ final class MainCoordinator: Coordinator{
             }
             let nav = UINavigationController(rootViewController: vc)
             nav.tabBarItem.image = UIImage(named: "Profile")
+            nav.tabBarItem.accessibilityIdentifier = "tabProfile"
             return nav
         }
 }

@@ -27,6 +27,7 @@ final class AuthView: UIView {
 
     private let subtitleLabel: UILabel = {
         let label = UILabel()
+        
         label.text = "Войдите, чтобы продолжить"
         label.font = UIFont(name: "Urbanist-Medium", size: 15) ?? UIFont.systemFont(ofSize: 15)
         label.textColor = UIColor.white.withAlphaComponent(0.5)
@@ -39,6 +40,7 @@ final class AuthView: UIView {
 
     private let loginField: UITextField = {
         let tf = UITextField()
+        tf.accessibilityIdentifier = "loginTf"
         tf.backgroundColor = UIColor(named: "Background 2")
         tf.layer.cornerRadius = 15
         tf.textColor = .white
@@ -46,6 +48,7 @@ final class AuthView: UIView {
         tf.tintColor = UIColor(named: "Imperial red")
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
+        tf.textContentType = .oneTimeCode
 
         let icon = UIImageView(image: UIImage(systemName: "person"))
         icon.tintColor = UIColor.white.withAlphaComponent(0.4)
@@ -69,6 +72,7 @@ final class AuthView: UIView {
 
     private let passwordField: UITextField = {
         let tf = UITextField()
+        tf.accessibilityIdentifier = "passwTf"
         tf.backgroundColor = UIColor(named: "Background 2")
         tf.layer.cornerRadius = 15
         tf.textColor = .white
@@ -76,6 +80,7 @@ final class AuthView: UIView {
         tf.tintColor = UIColor(named: "Imperial red")
         tf.isSecureTextEntry = true
         tf.autocapitalizationType = .none
+        tf.textContentType = .oneTimeCode
 
         let icon = UIImageView(image: UIImage(systemName: "lock"))
         icon.tintColor = UIColor.white.withAlphaComponent(0.4)
@@ -101,6 +106,7 @@ final class AuthView: UIView {
 
     private lazy var loginButton: UIButton = {
         let btn = UIButton(type: .system)
+        btn.accessibilityIdentifier = "loginBtn"
         btn.setTitle("Войти", for: .normal)
         btn.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)
         btn.setTitleColor(.black, for: .normal)
