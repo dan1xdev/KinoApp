@@ -1,7 +1,7 @@
 # KinoApp
 
-iOS приложение для просмотра информации о фильмах на основе [Kinopoisk Unofficial API](https://kinopoiskapiunofficial.tech).
-https://youtube.com/shorts/zP4RNgzImEQ
+## iOS приложение для просмотра информации о фильмах на основе [Kinopoisk Unofficial API](https://kinopoiskapiunofficial.tech).
+## https://youtube.com/shorts/zP4RNgzImEQ
 
 ## Стек технологий
 
