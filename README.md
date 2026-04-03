@@ -2,6 +2,7 @@
 
 ## iOS приложение для просмотра информации о фильмах на основе [Kinopoisk Unofficial API](https://kinopoiskapiunofficial.tech).
 ## https://youtube.com/shorts/zP4RNgzImEQ
+## https://rutube.ru/video/private/c01ff174af1d4fa1fc829f1c04cd9573/?p=9hld1OT_bphLBlHXSevyjA
 
 ## Стек технологий
 
